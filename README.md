@@ -145,6 +145,7 @@ See the [LICENSE](./LICENSE) file for details about the license under which this
 
 ## Citation
 If you find this repository useful in your research, please consider giving a star :star: and a citation
+<!--- cSpell:disable --->
 ```
 @article{assran2023self,
   title={Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture},
@@ -152,9 +153,68 @@ If you find this repository useful in your research, please consider giving a st
   journal={arXiv preprint arXiv:2301.08243},
   year={2023}
 }
+```
+<!--- cSpell:enable --->
 
-cd Desktop/notepad/vpn/
-sudo openvpn --config inesctec_202103.ovpn
-ssh ubuntu@10.610.140.231
-ssh -X 10.610.40.520
+# Changes
+
+## INESC Environment
+
+<!--- cSpell:disable --->
+```shell
+:~$ cd Desktop/notepad/vpn/
+:~$ sudo openvpn --config inesctec_202103.ovpn
+:~$ ssh ubuntu@10.610.140.231
+:~$ ssh -X 10.610.40.520
+```
+<!--- cSpell:enable --->
+
+# Avoid overriding CUDA installation
+
+The default dev container installation configuration adds the UDa libraries and tools. The additional OS installation updates the packages. When this is done, some CUDA libraries are updated. The OS then has the incorrect libraries:
+
+<!--- cSpell:disable --->
+```shell
+vscode ➜ /workspaces/ViT-pytorch (dev_container) $ apt list --installed | grep -i 12.2
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+dbus-user-session/jammy-updates,jammy-security,now 1.12.20-2ubuntu4.1 amd64 [installed,automatic]
+dbus/jammy-updates,jammy-security,now 1.12.20-2ubuntu4.1 amd64 [installed,automatic]
+libcudnn8-dev/unknown,now 8.9.7.29-1+cuda12.2 amd64 [installed]
+libcudnn8/unknown,now 8.9.7.29-1+cuda12.2 amd64 [installed]
+libdbus-1-3/jammy-updates,jammy-security,now 1.12.20-2ubuntu4.1 amd64 [installed,automatic]
+libnode72/jammy-updates,jammy-security,now 12.22.9~dfsg-1ubuntu3.3 amd64 [installed,automatic]
+libnvjpeg-12-1/unknown,now 12.2.0.2-1 amd64 [installed,automatic]
+libnvjpeg-dev-12-1/unknown,now 12.2.0.2-1 amd64 [installed,automatic]
+nodejs-doc/jammy-updates,jammy-security,now 12.22.9~dfsg-1ubuntu3.3 all [installed,automatic]
+nodejs/jammy-updates,jammy-security,now 12.22.9~dfsg-1ubuntu3.3 amd64 [installed]
+vscode ➜ /workspaces/ViT-pytorch (dev_container) $ 
+```
+<!--- cSpell:enable --->
+
+
+We add the following commands by pinning the packages to avoid the changes in their version:
+
+<!--- cSpell:disable --->
+```
+sudo apt-mark hold cuda-toolkit libcudnn8-dev libcudnn8
+sudo apt-get upgrade -y
+```
+<!--- cSpell:enable --->
+
+
+Check CUDA access:
+
+<!--- cSpell:disable --->
+```shell
+vscode ➜ /workspaces/ViT-pytorch (dev_container) $ python has_cuda.py 
+has_cuda = True
+device = cuda
+n_gpu = 1
+
+???
+```
+<!--- cSpell:enable --->
+
 
