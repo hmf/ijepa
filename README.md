@@ -212,8 +212,6 @@ vscode ➜ /workspaces/ViT-pytorch (dev_container) $ python has_cuda.py
 has_cuda = True
 device = cuda
 n_gpu = 1
-
-???
 ```
 <!--- cSpell:enable --->
 
