@@ -152,3 +152,9 @@ If you find this repository useful in your research, please consider giving a st
   journal={arXiv preprint arXiv:2301.08243},
   year={2023}
 }
+
+cd Desktop/notepad/vpn/
+sudo openvpn --config inesctec_202103.ovpn
+ssh ubuntu@10.610.140.231
+ssh -X 10.610.40.520
+
