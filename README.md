@@ -208,7 +208,7 @@ Check CUDA access:
 
 <!--- cSpell:disable --->
 ```shell
-vscode ➜ /workspaces/ViT-pytorch (dev_container) $ python has_cuda.py 
+vscode ➜ /workspaces/ijepa (test_1) $  python has_cuda.py 
 has_cuda = True
 device = cuda
 n_gpu = 1

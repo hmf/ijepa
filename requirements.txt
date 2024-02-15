@@ -12,10 +12,10 @@
 # packaging
 # scipy
 torch==2.2.0
-torchvision=0.17
+torchvision==0.17
 numpy
 pyyaml
-opencv
+opencv-python
 submitit
 # tqdm
 # tensorboard
